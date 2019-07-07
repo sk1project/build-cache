@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -rf /opt/uniconvertor
+
+exit 0
