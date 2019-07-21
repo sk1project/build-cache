@@ -1,0 +1,16 @@
+#!/usr/bin/python
+#
+# Wrapper script to start UniConvertor application on macOS
+#
+# Copyright (C) 2019 Igor E. Novikov
+#
+# This library is covered by GNU Affero General Public License v3.
+# For more info see LICENSE file in UniConvertor root directory.
+
+import sys
+
+sys.path.insert(1, '/opt/uniconvertor/pkgs')
+
+import uc2
+
+uc2.uc2_run()
