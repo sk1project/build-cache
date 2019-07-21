@@ -23,5 +23,5 @@ for src, dst in symlinks:
     if os.path.exists(dst):
         os.remove(dst)
     os.symlink(src, dst)
-
+os.system('chmod +x %s/bin/uniconvertor' % APP_DIR)
 os.remove(SYMLINKS)
