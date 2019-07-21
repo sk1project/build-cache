@@ -1,5 +1,27 @@
-#!/bin/sh
+#!/usr/bin/python
 
-ln -s /opt/uniconvertor/bin/uc2 /usr/local/bin/uc2
+import os
+import sys
 
-exit 0
+APP_DIR = '/opt/uniconvertor'
+SYMLINKS = '%s/symlinks' % APP_DIR
+
+if not os.path.exists(SYMLINKS):
+    sys.exit(1)
+
+with open(SYMLINKS, 'rb') as fileptr:
+    symlinks = fileptr.readline()
+
+try:
+    code = compile('symlinks=' + symlinks, '<string>', 'exec')
+    exec code
+except Exception:
+    print 'Parsing error in "%s"' % symlinks
+    sys.exit(1)
+
+for src, dst in symlinks:
+    if os.path.exists(dst):
+        os.remove(dst)
+    os.symlink(src, dst)
+
+os.remove(SYMLINKS)

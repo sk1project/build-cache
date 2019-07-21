@@ -1,5 +1,7 @@
 #!/bin/sh
 
 rm -rf /opt/uniconvertor
+rm -f /usr/local/bin/uniconvertor
+rm -f /usr/local/bin/uc2
 
 exit 0
