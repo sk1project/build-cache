@@ -5,6 +5,7 @@ import sys
 
 APP_DIR = '/opt/uniconvertor'
 SYMLINKS = '%s/symlinks' % APP_DIR
+BIN_FOLDER = '/usr/local/bin'
 
 if not os.path.exists(SYMLINKS):
     sys.exit(1)
@@ -19,9 +20,13 @@ except Exception:
     print 'Parsing error in "%s"' % symlinks
     sys.exit(1)
 
+if not os.path.exists(BIN_FOLDER):
+    os.makedirs(BIN_FOLDER)
+
 for src, dst in symlinks:
     if os.path.exists(dst):
         os.remove(dst)
     os.symlink(src, dst)
+
 os.system('chmod +x %s/bin/uniconvertor' % APP_DIR)
 os.remove(SYMLINKS)
